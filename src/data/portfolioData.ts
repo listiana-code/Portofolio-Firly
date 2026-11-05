@@ -120,7 +120,7 @@ export const DEFAULT_PROFILE_INFO: ProfileInfo = {
   highSchool: "SMA / Pesantren Al-Ittihad Cianjur",
   highSchoolPeriod: "2019 - 2022",
   highSchoolScore: "",
-  avatarUrl: "/src/assets/images/firly_profile_avatar_1793864847835.jpg",
+  avatarUrl: "/images/firly_profile_avatar_1793864847835.jpg",
   heroMantra: "All start is difficult",
   heroSubtitle: "Perjalanan dari santri di Pesantren Al-Ittihad Cianjur hingga merancang sistem informasi berbasis data dan algoritma rekomendasi di Universitas Gunadarma.",
   adminPassword: "firlyahmad2026",
@@ -339,7 +339,7 @@ export const PROJECTS_DATA: Project[] = [
     tagline: "Sistem pendukung keputusan cerdas untuk pencarian armada rental mobil terpercaya di wilayah Bekasi berbasis multi-kriteria.",
     year: "2025 - 2026",
     status: "Skripsi Tingkat Akhir (Completed)",
-    image: "/src/assets/images/project_rental_car_1793864849468.jpg",
+    image: "/images/project_rental_car_1793864849468.jpg",
     hasSimulator: true,
     abstract: `Dikembangkan sebagai tugas akhir S1 Sistem Informasi di Universitas Gunadarma. Proyek ini memetakan dan merekomendasikan tempat rental mobil terverifikasi di seantero Bekasi (Cibitung, Tambun, Summarecon, Pekayon, Cikarang) dengan mempertimbangkan multi-kriteria: harga harian, kelengkapan surat kendaraan, jarak dari lokasi penjemputan, rating pelanggan riil, dan ketersediaan sopir.`,
     creativeProcess: [
@@ -382,7 +382,7 @@ export const PROJECTS_DATA: Project[] = [
     tagline: "Pipeline persiapan data transaksional dan perancangan data warehouse untuk visualisasi metrik performa armada dan pendapatan.",
     year: "2025 - 2026",
     status: "Certified Project (Creating BI & Data Prep)",
-    image: "/src/assets/images/project_bi_dashboard_1793864849901.jpg",
+    image: "/images/project_bi_dashboard_1793864849901.jpg",
     hasSimulator: false,
     abstract: `Proyek komprehensif dalam rangkaian sertifikasi Creating Business Intelligence & Data Preparation for Business Processes di Universitas Gunadarma. Berfokus pada pemrosesan dataset log transaksi, pembersihan data kotor (ETL), pembentukan skema bintang (Star Schema), serta dashboard pemantauan tren permintaan armada kendaraan.`,
     creativeProcess: [
@@ -420,7 +420,7 @@ export const PROJECTS_DATA: Project[] = [
     tagline: "Studi analitik prediktif dan eksplorasi statistik preferensi sewa kendaraan masyarakat perkotaan Jawa Barat.",
     year: "2026",
     status: "Lembaga Sertifikasi Profesi (LSP) TIK",
-    image: "/src/assets/images/firly_profile_avatar_1793864847835.jpg",
+    image: "/images/firly_profile_avatar_1793864847835.jpg",
     hasSimulator: false,
     abstract: `Program sertifikasi resmi Badan Nasional Sertifikasi Profesi (BNSP) melalui LSP Universitas Gunadarma. Menguji penguasaan siklus hidup analitik data dari pengumpulan hipotesis, pembersihan data terstruktur, visualisasi grafis, hingga penyusunan kesimpulan strategis bagi industri mobilitas transportasi lokal.`,
     creativeProcess: [

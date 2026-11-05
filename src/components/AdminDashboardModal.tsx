@@ -195,7 +195,7 @@ export const AdminDashboardModal: React.FC<AdminDashboardModalProps> = ({ isOpen
         tagline: editingProj.tagline,
         year: editingProj.year,
         status: editingProj.status,
-        image: editingProj.image || '/src/assets/images/project_rental_car_1793864849468.jpg',
+        image: editingProj.image || '/images/project_rental_car_1793864849468.jpg',
         abstract: editingProj.abstract,
         creativeProcess: editingProj.creativeProcess || [],
         technicalChallenges: editingProj.technicalChallenges || [],
@@ -407,9 +407,9 @@ export const AdminDashboardModal: React.FC<AdminDashboardModalProps> = ({ isOpen
                         onClick={() => {
                           setProfileForm(prev => ({
                             ...prev,
-                            avatarUrl: "/src/assets/images/firly_profile_avatar_1793864847835.jpg"
+                            avatarUrl: "/images/firly_profile_avatar_1793864847835.jpg"
                           }));
-                          updateProfile({ avatarUrl: "/src/assets/images/firly_profile_avatar_1793864847835.jpg" });
+                          updateProfile({ avatarUrl: "/images/firly_profile_avatar_1793864847835.jpg" });
                           showNotification('Foto dikembalikan ke foto AI Studio resmi.');
                         }}
                         className="px-3 py-1.5 rounded-lg bg-slate-200 hover:bg-slate-300 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-300 text-xs border border-slate-300 dark:border-slate-700 transition-colors"
@@ -728,7 +728,7 @@ export const AdminDashboardModal: React.FC<AdminDashboardModalProps> = ({ isOpen
                       tagline: '',
                       year: '2026',
                       status: 'Completed',
-                      image: '/src/assets/images/project_rental_car_1793864849468.jpg',
+                      image: '/images/project_rental_car_1793864849468.jpg',
                       abstract: '',
                       creativeProcess: [],
                       technicalChallenges: [],

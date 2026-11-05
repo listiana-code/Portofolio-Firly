@@ -61,12 +61,30 @@ interface PortfolioContextType {
 
 const PortfolioContext = createContext<PortfolioContextType | undefined>(undefined);
 
+// Helper to normalize image paths from dev /src/assets/images/ to production /images/
+const normalizeImagePath = (url: string | undefined): string => {
+  if (!url) return '';
+  if (url.startsWith('/src/assets/images/')) {
+    return url.replace('/src/assets/images/', '/images/');
+  }
+  return url;
+};
+
 export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   // 1. Profile State
   const [profile, setProfile] = useState<ProfileInfo>(() => {
     const saved = localStorage.getItem('firly_profile_state');
     if (saved) {
-      try { return JSON.parse(saved); } catch (e) {}
+      try {
+        const parsed = JSON.parse(saved);
+        if (parsed) {
+          return {
+            ...DEFAULT_PROFILE_INFO,
+            ...parsed,
+            avatarUrl: normalizeImagePath(parsed.avatarUrl) || DEFAULT_PROFILE_INFO.avatarUrl,
+          };
+        }
+      } catch (e) {}
     }
     return DEFAULT_PROFILE_INFO;
   });
@@ -116,7 +134,15 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const [projects, setProjects] = useState<Project[]>(() => {
     const saved = localStorage.getItem('firly_projects_state');
     if (saved) {
-      try { return JSON.parse(saved); } catch (e) {}
+      try {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          return parsed.map((p: Project) => ({
+            ...p,
+            image: normalizeImagePath(p.image) || '/images/project_rental_car_1793864849468.jpg',
+          }));
+        }
+      } catch (e) {}
     }
     return PROJECTS_DATA;
   });

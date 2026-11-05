@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { Moon, Sun, Bell, FileText, Menu, X, ShieldAlert } from 'lucide-react';
+import { Moon, Sun, Bell, FileText, Menu, X, ShieldAlert, Key } from 'lucide-react';
 import { usePortfolio } from '../context/PortfolioContext';
 
 interface NavbarProps {
@@ -25,6 +25,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
   const clickCountRef = useRef(0);
   const clickTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const longPressTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   // Hidden triple-click on FA logo to trigger secret login
   const handleLogoClick = (e: React.MouseEvent) => {
@@ -46,6 +47,27 @@ export const Navbar: React.FC<NavbarProps> = ({
     }, 800);
   };
 
+  // Mobile long-press handler (1 second touch) on FA logo
+  const handleTouchStart = () => {
+    longPressTimerRef.current = setTimeout(() => {
+      if (isAdmin) {
+        onOpenAdminDashboard();
+      } else {
+        onSecretLoginTrigger();
+      }
+      try {
+        if ('vibrate' in navigator) navigator.vibrate(50);
+      } catch (e) {}
+    }, 1000);
+  };
+
+  const handleTouchEnd = () => {
+    if (longPressTimerRef.current) {
+      clearTimeout(longPressTimerRef.current);
+      longPressTimerRef.current = null;
+    }
+  };
+
   return (
     <header className="sticky top-0 z-40 w-full backdrop-blur-md border-b transition-colors duration-300 bg-white/90 border-slate-200 text-slate-900 dark:bg-[#060c16]/85 dark:border-cyan-900/30 dark:text-white shadow-xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-6">
@@ -53,8 +75,11 @@ export const Navbar: React.FC<NavbarProps> = ({
         {/* Zone 1: Single Brand Element Wordmark */}
         <div 
           onClick={handleLogoClick}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+          onTouchCancel={handleTouchEnd}
           className="text-base sm:text-lg font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-2 group whitespace-nowrap shrink-0 cursor-pointer select-none"
-          title="archive by firly.dev"
+          title="archive by firly.dev (Klik 3x atau tahan 1 detik untuk Admin)"
         >
           <span className="w-8 h-8 rounded-full bg-cyan-100 border border-cyan-300 text-cyan-800 dark:bg-cyan-500/20 dark:border-cyan-400/40 dark:text-cyan-300 flex items-center justify-center font-mono text-xs font-semibold group-hover:scale-105 group-hover:border-cyan-400 transition-all">
             FA
@@ -180,17 +205,21 @@ export const Navbar: React.FC<NavbarProps> = ({
           >
             Kontak & Kolaborasi
           </a>
-          {isAdmin && (
+          {/* Dedicated mobile portal access */}
+          <div className="pt-2 mt-2 border-t border-slate-200 dark:border-slate-800/80 flex items-center justify-between">
+            <span className="text-[11px] text-slate-500 dark:text-slate-400 font-mono">Portal Pengembang</span>
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
-                onOpenAdminDashboard();
+                if (isAdmin) onOpenAdminDashboard();
+                else onSecretLoginTrigger();
               }}
-              className="w-full text-left px-3 py-2 rounded-md text-sm font-bold text-cyan-800 dark:text-cyan-300 bg-cyan-100 dark:bg-cyan-950/40 border border-cyan-400"
+              className="px-3 py-1.5 rounded-lg bg-cyan-100 hover:bg-cyan-200 dark:bg-cyan-950/70 dark:hover:bg-cyan-900/80 text-cyan-800 dark:text-cyan-300 border border-cyan-300 dark:border-cyan-500/40 text-xs font-mono font-semibold flex items-center gap-1.5 transition-colors"
             >
-              Buka Panel CRUD Admin
+              <Key className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />
+              <span>{isAdmin ? 'Panel CRUD (Aktif)' : 'Login Admin Firly'}</span>
             </button>
-          )}
+          </div>
         </div>
       )}
     </header>

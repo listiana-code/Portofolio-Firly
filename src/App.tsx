@@ -67,11 +67,19 @@ function PortfolioApp() {
     localStorage.setItem('notifs_firly', JSON.stringify(notifications));
   }, [notifications]);
 
-  // Check URL Hash for secret direct access (#admin or #login)
+  // Check URL Hash or Query param for secret direct access (#admin, #login, ?admin)
   useEffect(() => {
-    const checkHash = () => {
+    const checkHashOrQuery = () => {
       const hash = window.location.hash.toLowerCase();
-      if (hash === '#admin' || hash === '#login' || hash === '#crud') {
+      const search = window.location.search.toLowerCase();
+      if (
+        hash === '#admin' || 
+        hash === '#login' || 
+        hash === '#crud' || 
+        search.includes('admin') || 
+        search.includes('login') ||
+        search.includes('crud')
+      ) {
         if (isAdmin) {
           setIsAdminDashboardOpen(true);
         } else {
@@ -80,9 +88,9 @@ function PortfolioApp() {
       }
     };
 
-    checkHash();
-    window.addEventListener('hashchange', checkHash);
-    return () => window.removeEventListener('hashchange', checkHash);
+    checkHashOrQuery();
+    window.addEventListener('hashchange', checkHashOrQuery);
+    return () => window.removeEventListener('hashchange', checkHashOrQuery);
   }, [isAdmin]);
 
   // Keyboard shortcut listener: Ctrl + Shift + A or Cmd + Shift + A

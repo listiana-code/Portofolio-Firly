@@ -45,8 +45,14 @@ export const PhoneMockup: React.FC = () => {
               <div className="relative w-full h-full flex flex-col justify-between p-3 animate-fadeIn overflow-hidden">
                 {/* Full Bleed Profile Photo Background */}
                 <img
-                  src={profile.avatarUrl}
+                  src={profile.avatarUrl || '/images/firly_profile_avatar_1793864847835.jpg'}
                   alt={profile.name}
+                  onError={(e) => {
+                    const img = e.currentTarget;
+                    if (!img.src.includes('/images/firly_profile_avatar_1793864847835.jpg')) {
+                      img.src = '/images/firly_profile_avatar_1793864847835.jpg';
+                    }
+                  }}
                   className="absolute inset-0 w-full h-full object-cover object-top filter brightness-[0.95]"
                 />
 

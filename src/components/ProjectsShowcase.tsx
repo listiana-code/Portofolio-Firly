@@ -97,8 +97,14 @@ export const ProjectsShowcase: React.FC<ProjectsShowcaseProps> = ({ onSelectProj
                     {/* Card Thumbnail */}
                     <div className="relative h-44 sm:h-52 w-full overflow-hidden bg-slate-200 dark:bg-slate-900">
                       <img 
-                        src={project.image} 
+                        src={project.image || '/images/project_rental_car_1793864849468.jpg'} 
                         alt={project.title}
+                        onError={(e) => {
+                          const target = e.currentTarget;
+                          if (!target.src.includes('/images/project_rental_car_1793864849468.jpg')) {
+                            target.src = '/images/project_rental_car_1793864849468.jpg';
+                          }
+                        }}
                         className="w-full h-full object-cover transition-transform duration-500 hover:scale-105" 
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-[#0b162a] via-transparent to-transparent" />
@@ -176,8 +182,14 @@ export const ProjectsShowcase: React.FC<ProjectsShowcaseProps> = ({ onSelectProj
                 <div>
                   <div className="relative h-48 overflow-hidden bg-slate-100 dark:bg-slate-900">
                     <img 
-                      src={project.image} 
+                      src={project.image || '/images/project_rental_car_1793864849468.jpg'} 
                       alt={project.title}
+                      onError={(e) => {
+                        const target = e.currentTarget;
+                        if (!target.src.includes('/images/project_rental_car_1793864849468.jpg')) {
+                          target.src = '/images/project_rental_car_1793864849468.jpg';
+                        }
+                      }}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-[#09152b] via-transparent to-transparent" />

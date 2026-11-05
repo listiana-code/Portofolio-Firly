@@ -59,11 +59,11 @@ export const Footer: React.FC<FooterProps> = ({
                 if (isAdmin) onOpenAdminDashboard();
                 else onSecretLoginTrigger();
               }}
-              className="text-slate-400 hover:text-cyan-600 dark:text-slate-700 dark:hover:text-cyan-400/60 p-0.5 transition-colors focus:outline-none"
-              title="Portal Rahasia Firly (Ctrl+Shift+A)"
-              aria-label="Portal Rahasia"
+              className="text-slate-400 hover:text-cyan-600 dark:text-slate-600 dark:hover:text-cyan-400/80 p-1.5 rounded transition-colors focus:outline-none"
+              title="Portal Rahasia Firly (Akses CRUD)"
+              aria-label="Portal Rahasia Firly"
             >
-              <Lock className="w-2.5 h-2.5" />
+              <Lock className="w-3 h-3" />
             </button>
           </div>
 
